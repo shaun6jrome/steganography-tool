@@ -26,6 +26,9 @@ def home_page():
     st.markdown("- **Encode Secret Message:** Hide a message inside an image.")
     st.markdown("- **Decode Secret Message:** Extract a hidden message from an image.")
 
+from utils.image_utils import get_image_info, format_size
+from utils.capacity import calculate_capacity, check_capacity
+
 def encode_page():
     st.header("🔒 Encode Secret Message")
     st.markdown("---")
@@ -40,14 +43,45 @@ def encode_page():
         if uploaded_file is not None:
             st.image(uploaded_file, caption="Original Image Preview", use_container_width=True)
             
+            img_info = get_image_info(uploaded_file)
+            max_cap = calculate_capacity(img_info['width'], img_info['height'])
+            
+            with st.expander("Image Information", expanded=True):
+                st.write(f"**File Name:** {img_info['filename']}")
+                st.write(f"**Format:** {img_info['format']} | **Mode:** {img_info['mode']}")
+                st.write(f"**Resolution:** {img_info['width']} x {img_info['height']} pixels")
+                st.write(f"**File Size:** {format_size(img_info['size_bytes'])}")
+                st.write(f"**Max Capacity:** {max_cap} characters")
+                
+            if img_info['format'].lower() not in ['png', 'bmp']:
+                st.warning("Warning: Uploaded image format is not lossless. Encoding may fail or get corrupted.")
+            
     with col2:
         st.subheader("2. Message Details")
         secret_message = st.text_area("Enter your secret message here", height=150)
+        
+        if uploaded_file is not None:
+            msg_length = len(secret_message)
+            is_valid, remaining = check_capacity(max_cap, msg_length)
+            
+            if msg_length > 0:
+                if is_valid:
+                    st.success(f"Message length: {msg_length} characters. Remaining capacity: {remaining} characters.")
+                else:
+                    st.error(f"Message is too long! Exceeds capacity by {abs(remaining)} characters.")
+                    
         password = st.text_input("Encryption Password (Optional)", type="password", help="Add an extra layer of security.")
         
         st.markdown("<br>", unsafe_allow_html=True)
         if st.button("Encode Message", type="primary", use_container_width=True):
-            st.info("Encoding functionality will be implemented in Phase 4.")
+            if uploaded_file is None:
+                st.error("Please upload an image first.")
+            elif not secret_message:
+                st.error("Please enter a secret message.")
+            elif uploaded_file is not None and not is_valid:
+                st.error("Message is too long for this image. Please shorten it or use a larger image.")
+            else:
+                st.info("Encoding functionality will be implemented in Phase 4.")
 
 def decode_page():
     st.header("🔓 Decode Secret Message")
