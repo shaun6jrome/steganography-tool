@@ -1,0 +1,98 @@
+/* Modern Cybersecurity UI Enhancements */
+
+/* Main App Gradient Background */
+.stApp {
+    background: linear-gradient(135deg, #0f172a 0%, #1e1e2f 100%);
+    color: #f8fafc;
+}
+
+/* Sidebar Styling */
+[data-testid="stSidebar"] {
+    background-color: rgba(15, 23, 42, 0.8) !important;
+    backdrop-filter: blur(10px);
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Typography Enhancements */
+h1, h2, h3 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+}
+
+h1, .st-emotion-cache-10trblm {
+    background: -webkit-linear-gradient(45deg, #60a5fa, #a78bfa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Input Fields Glassmorphism */
+.stTextInput>div>div>input, .stTextArea>div>div>textarea {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    color: #e2e8f0 !important;
+    border-radius: 8px !important;
+    transition: all 0.3s ease !important;
+}
+
+.stTextInput>div>div>input:focus, .stTextArea>div>div>textarea:focus {
+    border-color: #3b82f6 !important;
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.5) !important;
+    background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Button Micro-Animations */
+.stButton>button {
+    background: linear-gradient(90deg, #3b82f6 0%, #2563eb 100%) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 8px !important;
+    padding: 0.5rem 1rem !important;
+    font-weight: 600 !important;
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s ease !important;
+}
+
+.stButton>button:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4) !important;
+}
+
+.stButton>button:active {
+    transform: translateY(1px) !important;
+}
+
+/* Download Button Enhancements */
+.stDownloadButton>button {
+    background: linear-gradient(90deg, #10b981 0%, #059669 100%) !important;
+    border: none !important;
+    color: white !important;
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s ease !important;
+}
+
+.stDownloadButton>button:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4) !important;
+}
+
+/* File Uploader Customization */
+[data-testid="stFileUploadDropzone"] {
+    background-color: rgba(255, 255, 255, 0.02) !important;
+    border: 2px dashed rgba(255, 255, 255, 0.2) !important;
+    border-radius: 12px !important;
+    transition: all 0.3s ease;
+}
+
+[data-testid="stFileUploadDropzone"]:hover {
+    border-color: #60a5fa !important;
+    background-color: rgba(96, 165, 250, 0.05) !important;
+}
+
+/* Info and Success Metric Cards */
+[data-testid="stMetricValue"] {
+    color: #60a5fa !important;
+}
+
+/* Expander UI */
+.streamlit-expanderHeader {
+    background-color: rgba(255,255,255,0.05);
+    border-radius: 8px;
+}

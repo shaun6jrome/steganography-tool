@@ -183,6 +183,13 @@ def decode_page():
                         st.error(f"An error occurred during decoding: {str(e)}")
 
 
+def load_css(file_name):
+    try:
+        with open(file_name) as f:
+            st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+    except Exception:
+        pass
+
 def main():
     st.set_page_config(
         page_title="Steganography Tool",
@@ -190,6 +197,9 @@ def main():
         layout="wide",
         initial_sidebar_state="expanded"
     )
+    
+    # Load custom UI styles
+    load_css("assets/style.css")
     
     # Sidebar Navigation
     st.sidebar.title("Navigation")

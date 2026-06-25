@@ -35,9 +35,9 @@ def encode_image(image_file, secret_message):
     
     # Modify the least significant bit (LSB) of each channel
     for i in range(message_len):
-        # flat_array[i] & ~1 clears the LSB (e.g., 255 -> 254)
+        # flat_array[i] & 254 clears the LSB (e.g., 255 -> 254, 254 -> 254)
         # | int(binary_message[i]) sets the LSB to the message bit
-        flat_array[i] = (flat_array[i] & ~1) | int(binary_message[i])
+        flat_array[i] = (flat_array[i] & 254) | int(binary_message[i])
         
     # Reshape back to the original image dimensions
     encoded_array = flat_array.reshape(img_array.shape)
