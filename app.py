@@ -97,6 +97,36 @@ def encode_page():
                             mime="image/png",
                             use_container_width=True
                         )
+                        
+                        st.markdown("---")
+                        st.subheader("🛡️ Security Analysis Panel")
+                        
+                        efficiency = (len(final_message) / max_cap) * 100 if max_cap > 0 else 0
+                        
+                        if efficiency < 10:
+                            detectability = "Low (Very safe)"
+                            det_color = "green"
+                        elif efficiency < 50:
+                            detectability = "Medium (Moderate risk)"
+                            det_color = "orange"
+                        else:
+                            detectability = "High (Prone to steganalysis)"
+                            det_color = "red"
+                            
+                        enc_status = "AES Encryption Enabled" if password else "Disabled (Plaintext)"
+                        pwd_status = "Protected" if password else "Unprotected"
+                        
+                        col_s1, col_s2, col_s3 = st.columns(3)
+                        with col_s1:
+                            st.metric("Capacity Used", f"{efficiency:.2f}%")
+                            st.caption(f"{len(final_message)} / {max_cap} chars")
+                        with col_s2:
+                            st.markdown(f"**Detectability:** <span style='color:{det_color}'>{detectability}</span>", unsafe_allow_html=True)
+                            st.caption("Based on LSB saturation")
+                        with col_s3:
+                            st.write(f"**Encryption:** {enc_status}")
+                            st.write(f"**Password:** {pwd_status}")
+                            
                     except Exception as e:
                         st.error(f"An error occurred during encoding: {str(e)}")
 
