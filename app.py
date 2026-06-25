@@ -41,7 +41,16 @@ def encode_page():
         uploaded_file = st.file_uploader("Choose a PNG or BMP image", type=["png", "bmp"], key="encode_upload")
         
         if uploaded_file is not None:
-            st.image(uploaded_file, caption="Original Image Preview", use_container_width=True)
+            from utils.validator import validate_image_for_steganography
+            is_valid_img, img_msg = validate_image_for_steganography(uploaded_file)
+            
+            if not is_valid_img:
+                st.error(img_msg)
+            else:
+                if "Warning:" in img_msg:
+                    st.warning(img_msg)
+                    
+                st.image(uploaded_file, caption="Original Image Preview", use_container_width=True)
             
             img_info = get_image_info(uploaded_file)
             max_cap = calculate_capacity(img_info['width'], img_info['height'])
@@ -142,7 +151,13 @@ def decode_page():
         uploaded_file = st.file_uploader("Choose a PNG or BMP image", type=["png", "bmp"], key="decode_upload")
         
         if uploaded_file is not None:
-            st.image(uploaded_file, caption="Encoded Image Preview", use_container_width=True)
+            from utils.validator import validate_image_for_steganography
+            is_valid_img, img_msg = validate_image_for_steganography(uploaded_file)
+            
+            if not is_valid_img:
+                st.error(img_msg)
+            else:
+                st.image(uploaded_file, caption="Encoded Image Preview", use_container_width=True)
             
     with col2:
         st.subheader("2. Decoding Details")
