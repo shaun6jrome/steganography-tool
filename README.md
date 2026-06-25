@@ -1,18 +1,18 @@
-# 🕵️ Steganography Tool
+#  Steganography Tool INTERN ID _ CITS4449
 
 A modern, complete cybersecurity application built with Python and Streamlit that securely hides and reveals secret messages inside image files using the **Least Significant Bit (LSB)** steganography technique. 
 
-## 📌 Project Overview
+## Project Overview
 This project is designed for cybersecurity students, digital forensic investigators, ethical hackers, and security researchers. It provides a beginner-friendly architecture yet implements real-world data hiding techniques, complete with AES symmetric encryption and a security analysis dashboard.
 
-## 🚀 Core Features
+## ore Features
 * **Encode Secret Messages:** Seamlessly hide text within PNG or BMP images.
 * **Decode Secret Messages:** Extract hidden text from encoded images.
 * **Optional Encryption:** Encrypt your text message with a password using AES (Fernet) before embedding it into the image.
 * **Security Analysis Panel:** Dynamically calculate image capacity, encoding efficiency, and detectability risk.
 * **Modern Interface:** A sleek, cybersecurity-inspired UI with dark mode, glassmorphism aesthetics, and responsive layout.
 
-## ⚙️ Installation Guide
+## Installation Guide
 
 1. **Clone the repository**
    ```bash
@@ -75,7 +75,7 @@ steganography-tool/
     └── validator.py        # File integrity and format validation
 ```
 
-## 🧠 Algorithm Explanation
+## Algorithm Explanation
 
 ### What is Steganography?
 Steganography is the practice of concealing a file, message, image, or video within another file, message, image, or video. Unlike cryptography, which scrambles a message to make it unreadable, steganography hides the very existence of the message.
@@ -87,7 +87,7 @@ The LSB algorithm works by altering the **last bit** (the least significant bit)
 * Because only the final bit is changed, the pixel's color value fluctuates by at most `1` (e.g., from 255 to 254). 
 * This microscopic change is virtually undetectable to the human eye, keeping the secret message hidden in plain sight.
 
-## 🔮 Future Enhancements
+## Future Enhancements
 * **Audio & Video Steganography:** Expand support beyond images.
 * **Steganalysis Detection:** Build tools to detect if an image has been manipulated.
 * **Batch Encoding:** Process multiple images simultaneously.
