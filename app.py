@@ -81,7 +81,20 @@ def encode_page():
             elif uploaded_file is not None and not is_valid:
                 st.error("Message is too long for this image. Please shorten it or use a larger image.")
             else:
-                st.info("Encoding functionality will be implemented in Phase 4.")
+                from utils.encoder import encode_image
+                with st.spinner("Encoding message into image..."):
+                    try:
+                        encoded_image_bytes = encode_image(uploaded_file, secret_message)
+                        st.success("Message encoded successfully! You can download it below.")
+                        st.download_button(
+                            label="⬇️ Download Encoded Image",
+                            data=encoded_image_bytes,
+                            file_name="encoded_image.png",
+                            mime="image/png",
+                            use_container_width=True
+                        )
+                    except Exception as e:
+                        st.error(f"An error occurred during encoding: {str(e)}")
 
 def decode_page():
     st.header("🔓 Decode Secret Message")
