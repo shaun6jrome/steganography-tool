@@ -1,8 +1,10 @@
-#  Steganography Tool INTERN ID _ CITS4449
+# 🕵️ Steganography Tool INTERN ID _ CITS4449
 
 A modern, complete cybersecurity application built with Python and Streamlit that securely hides and reveals secret messages inside image files using the **Least Significant Bit (LSB)** steganography technique. 
 
-## Project Overview
+🚀 **Live Demo:** [https://stegtoolbyshaunjerome.streamlit.app/](https://stegtoolbyshaunjerome.streamlit.app/)
+
+## 📌 Project Overview
 This project is designed for cybersecurity students, digital forensic investigators, ethical hackers, and security researchers. It provides a beginner-friendly architecture yet implements real-world data hiding techniques, complete with AES symmetric encryption and a security analysis dashboard.
 
 ## Core Features
