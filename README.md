@@ -5,7 +5,7 @@ A modern, complete cybersecurity application built with Python and Streamlit tha
 ## Project Overview
 This project is designed for cybersecurity students, digital forensic investigators, ethical hackers, and security researchers. It provides a beginner-friendly architecture yet implements real-world data hiding techniques, complete with AES symmetric encryption and a security analysis dashboard.
 
-## ore Features
+## Core Features
 * **Encode Secret Messages:** Seamlessly hide text within PNG or BMP images.
 * **Decode Secret Messages:** Extract hidden text from encoded images.
 * **Optional Encryption:** Encrypt your text message with a password using AES (Fernet) before embedding it into the image.
