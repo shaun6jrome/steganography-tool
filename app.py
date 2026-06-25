@@ -82,9 +82,13 @@ def encode_page():
                 st.error("Message is too long for this image. Please shorten it or use a larger image.")
             else:
                 from utils.encoder import encode_image
+                from utils.encryption import encrypt_message
                 with st.spinner("Encoding message into image..."):
                     try:
-                        encoded_image_bytes = encode_image(uploaded_file, secret_message)
+                        # Encrypt if password is provided
+                        final_message = encrypt_message(secret_message, password) if password else secret_message
+                        
+                        encoded_image_bytes = encode_image(uploaded_file, final_message)
                         st.success("Message encoded successfully! You can download it below.")
                         st.download_button(
                             label="⬇️ Download Encoded Image",
@@ -120,11 +124,16 @@ def decode_page():
                 st.error("Please upload an encoded image first.")
             else:
                 from utils.decoder import decode_image
+                from utils.encryption import decrypt_message
                 with st.spinner("Decoding message from image..."):
                     try:
-                        decoded_message = decode_image(uploaded_file)
+                        extracted_message = decode_image(uploaded_file)
+                        
+                        # Decrypt if password is provided
+                        final_message = decrypt_message(extracted_message, password) if password else extracted_message
+                        
                         st.success("Message decoded successfully!")
-                        st.text_area("Hidden Message:", value=decoded_message, height=150)
+                        st.text_area("Hidden Message:", value=final_message, height=150)
                     except Exception as e:
                         st.error(f"An error occurred during decoding: {str(e)}")
 
