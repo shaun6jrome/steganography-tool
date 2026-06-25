@@ -116,7 +116,17 @@ def decode_page():
         
         st.markdown("<br>", unsafe_allow_html=True)
         if st.button("Decode Message", type="primary", use_container_width=True):
-            st.info("Decoding functionality will be implemented in Phase 5.")
+            if uploaded_file is None:
+                st.error("Please upload an encoded image first.")
+            else:
+                from utils.decoder import decode_image
+                with st.spinner("Decoding message from image..."):
+                    try:
+                        decoded_message = decode_image(uploaded_file)
+                        st.success("Message decoded successfully!")
+                        st.text_area("Hidden Message:", value=decoded_message, height=150)
+                    except Exception as e:
+                        st.error(f"An error occurred during decoding: {str(e)}")
 
 
 def main():
